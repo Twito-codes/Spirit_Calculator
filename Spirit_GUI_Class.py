@@ -24,12 +24,12 @@ class SpiritSummoner(ttk.Frame):
         self.pools_table.grid(column=1, row=0)
         self.place_pools()
 
-        self.initiative_label = ttk.Label(self.initiative_frame, text='')
+        self.initiative_label = ttk.Label(self.initiative_frame, text='Initiative: None')
         self.initiative_label.grid(column=1, row=0, padx=5, pady=10)
         self.initiative_button = ttk.Button(self.initiative_frame, text='Roll Initiative', command=self.roll_initiative)
         self.initiative_button.grid(column=0, row=0, pady=10)
 
-        self.astral_initiative_label = ttk.Label(self.initiative_frame, text='')
+        self.astral_initiative_label = ttk.Label(self.initiative_frame, text='Astral Initiative: None')
         self.astral_initiative_label.grid(column=1, row=1, sticky=W, padx=5, pady=10)
         self.astral_initiative_button = ttk.Button(self.initiative_frame, text='Roll Astral Initiative',
                                                    command=self.roll_astral_initiative)
