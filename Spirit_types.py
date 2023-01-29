@@ -1,3 +1,6 @@
+options = ['Air', 'Earth', 'Fire', 'Water', 'Beast', 'Man', 'Guardian', 'Sage', 'Plant', 'Task']
+
+
 def air(stats, sila):
     special = []
     stats['body'] = sila - 2

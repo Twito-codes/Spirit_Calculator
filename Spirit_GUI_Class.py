@@ -1,19 +1,21 @@
+from tkinter import NO, CENTER, END, ttk
+from customtkinter import N, S, W, E
 import Spirit_Class as Spirit
-from tkinter import W, NO, E, CENTER, END, ttk
+import customtkinter
 
 
-class SpiritSummoner(ttk.Frame):
+class SpiritSummoner(customtkinter.CTkFrame):
     def __init__(self, typ, force, master):
         super().__init__(master)
         self.spirit = Spirit.Spirit(typ=typ, force=int(force))
 
-        self.tab = ttk.Frame(master)
-        self.tab.grid(column=0, row=1, pady=10, padx=10)
+        self.mainframe = customtkinter.CTkFrame(master)
+        self.mainframe.grid(column=0, row=0)
 
-        self.stats_and_pools = ttk.Frame(self.tab)
+        self.stats_and_pools = customtkinter.CTkFrame(self.mainframe)
         self.stats_and_pools.grid(column=0, row=0, sticky=W)
 
-        self.initiative_frame = ttk.Frame(self.tab)
+        self.initiative_frame = customtkinter.CTkFrame(self.mainframe)
         self.initiative_frame.grid(column=1, row=0, sticky=W)
 
         self.stat_table = ttk.Treeview(self.stats_and_pools, columns=('stat', 'stat_val'), show='tree', height=11)
@@ -24,18 +26,19 @@ class SpiritSummoner(ttk.Frame):
         self.pools_table.grid(column=1, row=0)
         self.place_pools()
 
-        self.initiative_label = ttk.Label(self.initiative_frame, text='Initiative: None')
+        self.initiative_label = customtkinter.CTkLabel(self.initiative_frame, text='Initiative: None')
         self.initiative_label.grid(column=1, row=0, padx=5, pady=10)
-        self.initiative_button = ttk.Button(self.initiative_frame, text='Roll Initiative', command=self.roll_initiative)
+        self.initiative_button = customtkinter.CTkButton(self.initiative_frame, text='Roll Initiative',
+                                                         command=self.roll_initiative)
         self.initiative_button.grid(column=0, row=0, pady=10)
 
-        self.astral_initiative_label = ttk.Label(self.initiative_frame, text='Astral Initiative: None')
+        self.astral_initiative_label = customtkinter.CTkLabel(self.initiative_frame, text='Astral Initiative: None')
         self.astral_initiative_label.grid(column=1, row=1, sticky=W, padx=5, pady=10)
-        self.astral_initiative_button = ttk.Button(self.initiative_frame, text='Roll Astral Initiative',
-                                                   command=self.roll_astral_initiative)
+        self.astral_initiative_button = customtkinter.CTkButton(self.initiative_frame, text='Roll Astral Initiative',
+                                                                command=self.roll_astral_initiative)
         self.astral_initiative_button.grid(column=0, row=1, sticky=W, pady=10)
 
-        self.powers_and_services = ttk.Frame(self.tab)
+        self.powers_and_services = customtkinter.CTkFrame(self.mainframe)
         self.powers_and_services.grid(column=0, row=1, columnspan=2, sticky=W)
 
         self.powers_table = ttk.Treeview(self.powers_and_services, columns=('powers', 'optional_powers'), show='tree')
@@ -115,8 +118,8 @@ class SpiritSummoner(ttk.Frame):
 
     def roll_initiative(self):
         initiative = self.spirit.roll_initiative()
-        self.initiative_label.config(text=f'Initiative: {initiative}')
+        self.initiative_label.configure(text=f'Initiative: {initiative}')
 
     def roll_astral_initiative(self):
         initiative = self.spirit.roll_astral_initiative()
-        self.astral_initiative_label.config(text=f'Astral Initiative: {initiative}')
+        self.astral_initiative_label.configure(text=f'Astral Initiative: {initiative}')
